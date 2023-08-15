@@ -9,8 +9,7 @@ const { STATUS_CREATED } = require('../utils/constants');
 const { ValidationError, CastError } = mongoose.Error;
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
-    .populate('owner')
+  Movie.find({ owner: req.user._id })
     .then((movies) => res.send(movies))
     .catch(next);
 };
