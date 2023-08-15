@@ -10,6 +10,7 @@ const { ValidationError, CastError } = mongoose.Error;
 
 const getMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
+    .populate('owner')
     .then((movies) => res.send(movies))
     .catch(next);
 };
